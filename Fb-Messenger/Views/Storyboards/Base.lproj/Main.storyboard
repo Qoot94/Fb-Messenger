@@ -165,7 +165,7 @@
                                                 <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
                                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
                                                 <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-5"/>
-                                                <state key="normal" title="Log In with Google" image="google">
+                                                <state key="normal" title="  Log In with Google  " image="google">
                                                     <color key="titleColor" red="0.0" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                             </button>
@@ -176,7 +176,7 @@
                                                     <constraint firstAttribute="height" constant="50" id="Oal-5C-rXi"/>
                                                 </constraints>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" title="Log In with Facebook" backgroundImage="facebook">
+                                                <state key="normal" title="  Log In with Facebook " image="facebook">
                                                     <color key="titleColor" red="0.0" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                             </button>
@@ -300,34 +300,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="O8U-mZ-9IK">
-                                <rect key="frame" x="30" y="44" width="354" height="406"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="O8U-mZ-9IK">
+                                <rect key="frame" x="30" y="44" width="354" height="511"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ek1-1U-JrH">
-                                        <rect key="frame" x="37" y="0.0" width="280" height="160"/>
+                                        <rect key="frame" x="37" y="0.0" width="280" height="246"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person" catalog="system" id="69r-zb-mQ1">
-                                                <rect key="frame" x="65" y="8.5" width="150" height="154"/>
+                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person" catalog="system" id="69r-zb-mQ1">
+                                                <rect key="frame" x="65" y="46.5" width="150" height="154"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" systemColor="quaternarySystemFillColor"/>
                                                 <color key="tintColor" red="0.60153627399999998" green="0.80832910540000003" blue="0.7764700055" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="120" id="Dmf-KH-mPE"/>
-                                                    <constraint firstAttribute="height" priority="999" constant="120" id="n6v-iZ-JfI"/>
-                                                    <constraint firstAttribute="width" constant="240" id="wrx-PL-7uo"/>
-                                                </constraints>
                                             </imageView>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="69r-zb-mQ1" secondAttribute="trailing" constant="20" symbolic="YES" id="WDf-dp-KnP"/>
-                                            <constraint firstItem="69r-zb-mQ1" firstAttribute="centerX" secondItem="Ek1-1U-JrH" secondAttribute="centerX" id="dV3-gx-8UQ"/>
-                                            <constraint firstAttribute="bottom" secondItem="69r-zb-mQ1" secondAttribute="bottom" constant="20" symbolic="YES" id="dkc-rV-n9Y"/>
-                                            <constraint firstItem="69r-zb-mQ1" firstAttribute="centerY" secondItem="Ek1-1U-JrH" secondAttribute="centerY" id="hHS-nS-Xvh"/>
-                                            <constraint firstItem="69r-zb-mQ1" firstAttribute="top" secondItem="Ek1-1U-JrH" secondAttribute="top" constant="20" symbolic="YES" id="v68-U1-MpY"/>
-                                        </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="F86-FG-R0X">
-                                        <rect key="frame" x="0.0" y="160" width="354" height="246"/>
+                                        <rect key="frame" x="0.0" y="265" width="354" height="246"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name.." minimumFontSize="19" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="j00-kd-2Qs">
                                                 <rect key="frame" x="0.0" y="0.0" width="354" height="50"/>
@@ -445,9 +433,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="facebook" width="512" height="512"/>
+        <image name="facebook" width="24" height="24"/>
         <image name="globe.europe.africa" catalog="system" width="128" height="121"/>
-        <image name="google" width="512" height="512"/>
+        <image name="google" width="24" height="24"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <image name="scribble" catalog="system" width="128" height="118"/>
         <systemColor name="labelColor">
