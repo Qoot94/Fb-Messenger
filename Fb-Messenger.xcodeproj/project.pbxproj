@@ -66,10 +66,10 @@
 		B623DA4C27294E7800E4F5D5 /* Fb-Messenger */ = {
 			isa = PBXGroup;
 			children = (
+				B623DA5627294E7C00E4F5D5 /* Assets.xcassets */,
 				B623DA6127296B3800E4F5D5 /* Resources */,
 				B623DA6527296B8300E4F5D5 /* Models */,
 				B623DA6427296B7200E4F5D5 /* Views */,
-				B623DA5627294E7C00E4F5D5 /* Assets.xcassets */,
 				B623DA6727296C0500E4F5D5 /* Controllers */,
 			);
 			path = "Fb-Messenger";
@@ -78,6 +78,7 @@
 		B623DA6127296B3800E4F5D5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B623DA5B27294E7C00E4F5D5 /* Info.plist */,
 				B623DA4D27294E7800E4F5D5 /* AppDelegate.swift */,
 				B623DA4F27294E7800E4F5D5 /* SceneDelegate.swift */,
 				B623DA6227296B5A00E4F5D5 /* Extensions.swift */,
@@ -115,7 +116,6 @@
 				B623DA6927296D9C00E4F5D5 /* ConversationViewController.swift */,
 				B623DA6D27296DC100E4F5D5 /* NewConversationViewController.swift */,
 				B623DA6F27296DD500E4F5D5 /* ProfileViewController.swift */,
-				B623DA5B27294E7C00E4F5D5 /* Info.plist */,
 				B623DA6827296C4C00E4F5D5 /* LogReg */,
 			);
 			path = Controllers;
@@ -358,7 +358,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Fb-Messenger/Info.plist";
+				INFOPLIST_FILE = "Fb-Messenger/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -385,7 +385,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Fb-Messenger/Info.plist";
+				INFOPLIST_FILE = "Fb-Messenger/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

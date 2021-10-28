@@ -9,9 +9,12 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var facebookLoginBt: UIButton!
+    @IBOutlet weak var GoogleLoginBt: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+       
         // Do any additional setup after loading the view.
     }
     
