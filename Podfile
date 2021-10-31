@@ -6,5 +6,11 @@ target 'Fb-Messenger' do
   use_frameworks!
 
   # Pods for Fb-Messenger
+pod 'Firebase/Storage' 
 
+pod 'Firebase/Analytics'
+
+pod 'Firebase/Auth' 
+
+pod 'Firebase/Database'
 end
