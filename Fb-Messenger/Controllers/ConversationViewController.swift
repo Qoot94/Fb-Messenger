@@ -13,23 +13,27 @@ class ConversationsViewController: UIViewController {
         }
         catch {
         }
-        DatabaseManger.shared.test()
+       
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
   
+        //validateAuth()
+    }
+    override func viewWillAppear(_ animated: Bool) {
         validateAuth()
     }
-    
     private func validateAuth(){
         // current user is set automatically when you log a user in
         if FirebaseAuth.Auth.auth().currentUser == nil {
             // present login view controller
-            let vc = LoginViewController()
-            let nav = UINavigationController(rootViewController: vc)
-            nav.modalPresentationStyle = .fullScreen
-            present(nav, animated: false)
-            
+//            let vc = LoginViewController()
+//            let nav = UINavigationController(rootViewController: vc)
+//            nav.modalPresentationStyle = .fullScreen
+//            present(nav, animated: false)
+            let loginvc=storyboard?.instantiateViewController(withIdentifier: "loginVC") as! LoginViewController
+            present(loginvc, animated: true, completion: nil)
+            loginvc.modalPresentationStyle = .fullScreen
         }
     }
 }

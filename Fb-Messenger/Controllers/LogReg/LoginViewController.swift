@@ -7,6 +7,9 @@
 
 import UIKit
 import FirebaseAuth
+//TODO: if email is not there, show warning.
+//if nothing is entered, show warning.-> print error
+
 class LoginViewController: UIViewController {
     //MARK: IBOutlet 
     @IBOutlet weak var emailTextField: UITextField!
@@ -32,7 +35,8 @@ class LoginViewController: UIViewController {
             }
             let user = result.user
             print("logged in user: \(user)")
-            strongSelf.navigationController?.pushViewController(ConversationsViewController(), animated: true)
+            //smt here is wrong???  x
+            strongSelf.navigationController?.popViewController(animated: true)
             //dismiss(animated: true, completion: nil)
             
         })
