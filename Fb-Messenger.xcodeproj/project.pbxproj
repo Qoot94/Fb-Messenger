@@ -20,6 +20,7 @@
 		B623DA7027296DD500E4F5D5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B623DA6F27296DD500E4F5D5 /* ProfileViewController.swift */; };
 		B623DA7227296DE400E4F5D5 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B623DA7127296DE400E4F5D5 /* RegisterViewController.swift */; };
 		B67230AD272E8F3E0011F03A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B67230AC272E8F3E0011F03A /* GoogleService-Info.plist */; };
+		B67230AF272EB3920011F03A /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67230AE272EB3920011F03A /* DatabaseManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		B623DA6F27296DD500E4F5D5 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		B623DA7127296DE400E4F5D5 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		B67230AC272E8F3E0011F03A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B67230AE272EB3920011F03A /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		BAB3DC3D701D94A30CFC5726 /* Pods-Fb-Messenger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fb-Messenger.release.xcconfig"; path = "Target Support Files/Pods-Fb-Messenger/Pods-Fb-Messenger.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -100,6 +102,7 @@
 				B623DA5B27294E7C00E4F5D5 /* Info.plist */,
 				B623DA4D27294E7800E4F5D5 /* AppDelegate.swift */,
 				B623DA4F27294E7800E4F5D5 /* SceneDelegate.swift */,
+				B67230AE272EB3920011F03A /* DatabaseManager.swift */,
 				B623DA6227296B5A00E4F5D5 /* Extensions.swift */,
 			);
 			path = Resources;
@@ -281,6 +284,7 @@
 				B623DA5027294E7800E4F5D5 /* SceneDelegate.swift in Sources */,
 				B623DA7027296DD500E4F5D5 /* ProfileViewController.swift in Sources */,
 				B623DA6327296B5A00E4F5D5 /* Extensions.swift in Sources */,
+				B67230AF272EB3920011F03A /* DatabaseManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

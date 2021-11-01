@@ -22,13 +22,19 @@ class LoginViewController: UIViewController {
     //MARK: Functions
     func logIn(){
         // Firebase Login
-        FirebaseAuth.Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: { authResult, error in
+        FirebaseAuth.Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: { [weak self] authResult, error in
+            guard let strongSelf = self else{
+                return
+            }
             guard let result = authResult, error == nil else {
-                print("Failed to log in user with email \(self.emailTextField.text!)")
+                print("Failed to log in user with email \(strongSelf.emailTextField.text!)")
                 return
             }
             let user = result.user
             print("logged in user: \(user)")
+            strongSelf.navigationController?.pushViewController(ConversationsViewController(), animated: true)
+            //dismiss(animated: true, completion: nil)
+            
         })
 
     }

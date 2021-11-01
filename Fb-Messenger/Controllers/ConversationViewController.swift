@@ -1,40 +1,35 @@
-//
-//  ConversationViewController.swift
-//  Fb-Messenger
-//
-//  Created by Hamad Wasmi on 21/03/1443 AH.
-//
-
 import UIKit
-
-
+import FirebaseAuth
 class ConversationsViewController: UIViewController {
+    // root view controller that gets instantiated when app launches
     // check to see if user is signed in using ... user defaults
     // they are, stay on the screen. If not, show the login screen
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .red
+        
+        do {
+            try FirebaseAuth.Auth.auth().signOut()
+        }
+        catch {
+        }
+        DatabaseManger.shared.test()
     }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        let isLoggedIn = UserDefaults.standard.bool(forKey: "logged_in")
-        if !isLoggedIn {
+  
+        validateAuth()
+    }
+    
+    private func validateAuth(){
+        // current user is set automatically when you log a user in
+        if FirebaseAuth.Auth.auth().currentUser == nil {
             // present login view controller
-            
             let vc = LoginViewController()
             let nav = UINavigationController(rootViewController: vc)
             nav.modalPresentationStyle = .fullScreen
             present(nav, animated: false)
+            
         }
     }
 }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */

@@ -32,11 +32,13 @@ class RegisterViewController: UIViewController {
     //MARK: Functions
     //register a new user
     func createUser(){
-        FirebaseAuth.Auth.auth().createUser(withEmail: newEmailtextField.text!, password: newPasswordtextField.text!, completion: { authResult , error  in
+        Auth.auth().createUser(withEmail: newEmailtextField.text!, password: newPasswordtextField.text!, completion: { [self] authResult , error  in
         guard let result = authResult, error == nil else {
-            print("Error creating user")
+            print("Error creating user\(self.newEmailtextField.text!) ,error:\(error?.localizedDescription)")
             return
         }
+            let userdata = ChatAppUser(firstName: self.firstNametextField.text!, lastName: self.LastNameTextField.text!, emailAddress: self.newEmailtextField.text!)
+            
         let user = result.user
         print("Created User: \(user)")
     })
