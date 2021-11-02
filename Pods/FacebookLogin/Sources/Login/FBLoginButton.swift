@@ -16,38 +16,30 @@
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import Foundation
+import FacebookCore
+import UIKit
 
 /**
- AccessToken Extension
+ A button that initiates a log in or log out flow upon tapping.
+
+ `LoginButton` works with `AccessToken.current` to determine what to display,
+ and automatically starts authentication when tapped (i.e., you do not need to manually subscribe action targets).
+
+ Like `LoginManager`, you should make sure your app delegate is connected to `ApplicationDelegate`
+ in order for the button's delegate to receive messages.
+
+ `LoginButton` has a fixed height of @c 30 pixels, but you may change the width.
+ Initializing the button with `nil` frame will size the button to its minimum frame.
  */
-public extension AccessToken {
+public extension FBLoginButton {
   /**
-   Returns the known granted permissions.
-   */
-  var permissions: Set<Permission> {
-    return Set(__permissions.map { Permission(stringLiteral: $0) })
-  }
+   Create a new `LoginButton` with a given optional frame and read permissions.
 
-  /**
-   Returns the known declined permissions.
+   - Parameter frame: Optional frame to initialize with. Default: `nil`, which uses a default size for the button.
+   - Parameter permissions: Array of read permissions to request when logging in.
    */
-  var declinedPermissions: Set<Permission> {
-    return Set(__declinedPermissions.map { Permission(stringLiteral: $0) })
-  }
-
-  /**
-   Returns the known expired permissions.
-   */
-  var expiredPermissions: Set<Permission> {
-    return Set(__expiredPermissions.map { Permission(stringLiteral: $0) })
-  }
-
-  /**
-   Convenience getter to determine if a permission has been granted
-   - parameter permission: The permission to check
-   */
-  func hasGranted(_ permission: Permission) -> Bool {
-    return hasGranted(permission: permission.name)
+  convenience init(frame: CGRect = .zero, permissions: [Permission] = [.publicProfile]) {
+    self.init(frame: frame)
+    self.permissions = permissions.map { $0.name }
   }
 }

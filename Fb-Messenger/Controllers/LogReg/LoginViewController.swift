@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAuth
+import FacebookLogin
 //TODO: if email is not there, show warning.
 //if nothing is entered, show warning.-> print error
 
@@ -21,6 +22,17 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
        
         // Do any additional setup after loading the view.
+  
+        if let token = AccessToken.current,
+                !token.isExpired {
+                // User is logged in, do work such as go to next view controller.
+        }else{
+            let loginButton = FBLoginButton()
+                    loginButton.center = view.center
+                    view.addSubview(loginButton)
+            loginButton.permissions = ["public_profile", "email"]
+        }
+        
     }
     //MARK: Functions
     func logIn(){
