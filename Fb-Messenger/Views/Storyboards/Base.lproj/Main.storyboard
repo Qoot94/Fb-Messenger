@@ -8,7 +8,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+<<<<<<< HEAD
+        <!--Conversations vc-->
+=======
         <!--Conversations View Controller-->
+>>>>>>> parent of b81be81 (section 7)
         <scene sceneID="kfq-iF-jaQ">
             <objects>
                 <viewController id="tNc-xe-V21" customClass="ConversationsViewController" customModule="Fb_Messenger" customModuleProvider="target" sceneMemberID="viewController">
