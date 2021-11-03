@@ -11,6 +11,7 @@ import FirebaseAuth
 
 //TODO: if email is not there, show warning.
 //if nothing is entered, show warning.-> print error
+//needs testing
 
 class RegisterViewController: UIViewController {
     
@@ -27,23 +28,29 @@ class RegisterViewController: UIViewController {
         profileIMG.layer.cornerRadius = profileIMG.bounds.width / 2
         profileIMG.clipsToBounds=true
         profileIMG.layer.borderColor=UIColor.black.cgColor
-        //placehilder customization
-       
+        //placehilder customization     
         // Do any additional setup after loading the view.
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.profilePicPicked(tapGestureRecognizer:)))
         //imageView.isUserInteractionEnabled = true
         profileIMG.addGestureRecognizer(tapGestureRecognizer)
         
-        DatabaseManger.shared.test("qoot", firstNametextField.text!)
+//        DatabaseManger.shared.test("qoot", firstNametextField.text!)
     }
     override func viewDidAppear(_ animated: Bool) {
         
     }
+    func popAlert(_ message: String) {
+       var alert = UIAlertController(title: "warning", message: message, preferredStyle: .alert)
+       alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+       self.present(alert, animated: true)
+   }
     //MARK: Functions
     //register a new user
     func createUser(){
         Auth.auth().createUser(withEmail: newEmailtextField.text!, password: newPasswordtextField.text!, completion: { [self] authResult , error  in
         guard let result = authResult, error == nil else {
+            popAlert("\(error?.localizedDescription ?? " " )")
+            
             print("Error creating user\(self.newEmailtextField.text!) ,error:\(String(describing: error?.localizedDescription))")
             return
         }
@@ -52,9 +59,12 @@ class RegisterViewController: UIViewController {
             DatabaseManger.shared.insertUser(with: userdata)
             
 //            DatabaseManger.insertUser(userdata)
+          
         let user = result.user
         print("Created User: \(user)")
-            self.navigationController?.popViewController(animated: true)
+            
+            //self.navigationController?.popViewController(animated: true)
+            self.navigationController?.popToRootViewController(animated: true)
 //            if DatabaseManger.shared.userExists(with: newEmailtextField.text!, completion: (Bool) -> Void){
 //
 //            }
@@ -67,6 +77,7 @@ class RegisterViewController: UIViewController {
         self.presentPhotoActionSheet()
     }
     @IBAction func signUpUser(_ sender: UIButton) {
+        
         createUser()
     }
     

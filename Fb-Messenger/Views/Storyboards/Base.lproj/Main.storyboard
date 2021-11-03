@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GWg-af-TYW">
-    <device id="retina6_1" orientation="portrait" appearance="dark"/>
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -39,39 +39,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lRv-yh-KFf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3489.8550724637685" y="52.901785714285715"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController id="BYZ-38-t0r" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tTO-aG-KD2">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                                <color key="tintColor" red="0.60153627399999998" green="0.80832910540000003" blue="0.7764700055" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="start!"/>
-                                <connections>
-                                    <segue destination="DtN-cb-Egb" kind="modal" modalPresentationStyle="fullScreen" id="Q07-dr-fXs"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" red="0.5412659595" green="0.80708706019999998" blue="0.74456228749999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <constraints>
-                            <constraint firstItem="tTO-aG-KD2" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="2A2-bs-Ce8"/>
-                            <constraint firstItem="tTO-aG-KD2" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="5jI-h5-7un"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="tTO-aG-KD2" secondAttribute="bottom" id="85b-A4-rZC"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tTO-aG-KD2" secondAttribute="trailing" id="VUG-Xu-rJz"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="frO-BF-7x8"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1825" y="53"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="qHN-nK-pcd">
@@ -223,7 +190,7 @@
                                                     <color key="titleColor" red="0.0" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="Bxg-DW-DAw" kind="presentation" modalPresentationStyle="automatic" id="LLd-3C-JUf"/>
+                                                    <segue destination="Bxg-DW-DAw" kind="presentation" modalPresentationStyle="fullScreen" id="LLd-3C-JUf"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -338,11 +305,13 @@
             </objects>
             <point key="canvasLocation" x="1825" y="763"/>
         </scene>
-        <!--Item-->
+        <!--Profile-->
         <scene sceneID="xqr-Qn-bVX">
             <objects>
                 <navigationController id="HzB-e6-WBE" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="DGT-FY-2wu"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="person.2.circle.fill" catalog="system" id="DGT-FY-2wu">
+                        <color key="badgeColor" name="incomingAudioMessageTint"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="5Rn-U6-4CU">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -430,22 +399,23 @@
             <objects>
                 <viewController storyboardIdentifier="registerVC" id="Bxg-DW-DAw" customClass="RegisterViewController" customModule="Fb_Messenger" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4vy-Hu-frr">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="O8U-mZ-9IK">
-                                <rect key="frame" x="30" y="0.0" width="354" height="492"/>
+                                <rect key="frame" x="30" y="44" width="354" height="492"/>
                                 <subviews>
-                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ek1-1U-JrH">
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" semanticContentAttribute="playback" translatesAutoresizingMaskIntoConstraints="NO" id="Ek1-1U-JrH">
                                         <rect key="frame" x="54" y="0.0" width="246" height="246"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="facebook-messenger" id="69r-zb-mQ1">
-                                                <rect key="frame" x="8" y="23" width="218" height="218"/>
+                                                <rect key="frame" x="43" y="55" width="161" height="155"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.18185079100000001" green="0.42429068679999998" blue="0.96475595240000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <color key="tintColor" red="0.60153627399999998" green="0.80832910540000003" blue="0.7764700055" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             </imageView>
                                         </subviews>
+                                        <rect key="contentStretch" x="0.050000000000000003" y="0.050000000000000003" width="1" height="1"/>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="F86-FG-R0X">
                                         <rect key="frame" x="0.0" y="246" width="354" height="246"/>
@@ -538,7 +508,7 @@
                                 </constraints>
                             </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="globe.europe.africa" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="YaA-ZE-ZbD">
-                                <rect key="frame" x="0.0" y="492.5" width="631" height="609"/>
+                                <rect key="frame" x="0.0" y="536.5" width="631" height="609"/>
                                 <color key="tintColor" red="0.60153627399999998" green="0.80832910540000003" blue="0.7764700055" alpha="0.11926532265366308" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="610" id="15L-lX-i7X"/>
@@ -594,17 +564,18 @@
             <point key="canvasLocation" x="2579.7101449275365" y="52.901785714285715"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="4Jr-uB-4AK"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="facebook" width="24" height="24"/>
         <image name="facebook-messenger" width="512" height="512"/>
         <image name="globe.europe.africa" catalog="system" width="128" height="121"/>
         <image name="google" width="24" height="24"/>
+        <image name="person.2.circle.fill" catalog="system" width="128" height="121"/>
         <image name="scribble" catalog="system" width="128" height="118"/>
         <namedColor name="AccentColor">
             <color red="0.41568627450980394" green="0.7686274509803922" blue="0.86274509803921573" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="incomingAudioMessageTint">
+            <color red="0.0" green="0.4779999852180481" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="loginBackgroundColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

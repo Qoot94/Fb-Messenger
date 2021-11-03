@@ -21,6 +21,7 @@
 		B623DA7227296DE400E4F5D5 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B623DA7127296DE400E4F5D5 /* RegisterViewController.swift */; };
 		B67230AD272E8F3E0011F03A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B67230AC272E8F3E0011F03A /* GoogleService-Info.plist */; };
 		B67230AF272EB3920011F03A /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67230AE272EB3920011F03A /* DatabaseManager.swift */; };
+		B6C9F27127329E0900583A7B /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C9F27027329E0800583A7B /* ChatViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		B623DA7127296DE400E4F5D5 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		B67230AC272E8F3E0011F03A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B67230AE272EB3920011F03A /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		B6C9F27027329E0800583A7B /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		BAB3DC3D701D94A30CFC5726 /* Pods-Fb-Messenger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fb-Messenger.release.xcconfig"; path = "Target Support Files/Pods-Fb-Messenger/Pods-Fb-Messenger.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -68,6 +70,7 @@
 		B623DA4127294E7800E4F5D5 = {
 			isa = PBXGroup;
 			children = (
+				B6C9F27027329E0800583A7B /* ChatViewController.swift */,
 				B623DA4C27294E7800E4F5D5 /* Fb-Messenger */,
 				B623DA4B27294E7800E4F5D5 /* Products */,
 				173C8A410278558D39C29C6B /* Pods */,
@@ -171,7 +174,6 @@
 				B623DA4627294E7800E4F5D5 /* Sources */,
 				B623DA4727294E7800E4F5D5 /* Frameworks */,
 				B623DA4827294E7800E4F5D5 /* Resources */,
-				E659C8DE2535F203F6919E63 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -252,23 +254,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E659C8DE2535F203F6919E63 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Fb-Messenger/Pods-Fb-Messenger-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Fb-Messenger/Pods-Fb-Messenger-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Fb-Messenger/Pods-Fb-Messenger-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -284,6 +269,7 @@
 				B623DA5027294E7800E4F5D5 /* SceneDelegate.swift in Sources */,
 				B623DA7027296DD500E4F5D5 /* ProfileViewController.swift in Sources */,
 				B623DA6327296B5A00E4F5D5 /* Extensions.swift in Sources */,
+				B6C9F27127329E0900583A7B /* ChatViewController.swift in Sources */,
 				B67230AF272EB3920011F03A /* DatabaseManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -451,7 +437,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -480,7 +466,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

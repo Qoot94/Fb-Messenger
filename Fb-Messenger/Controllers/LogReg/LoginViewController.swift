@@ -26,16 +26,22 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
         if let token = AccessToken.current,
                 !token.isExpired {
                 // User is logged in, do work such as go to next view controller.
-            facebookLoginBt.isEnabled = false
+            facebookLoginBt?.isEnabled = false
         }else{
-            facebookLoginBt.isEnabled = true
-            facebookLoginBt.permissions = ["public_profile", "email"]
+            facebookLoginBt?.isEnabled = true
+            facebookLoginBt?.permissions = ["public_profile", "email"]
         }
         
     }
+    func popAlert(_ message: String) {
+       var alert = UIAlertController(title: "warning", message: message, preferredStyle: .alert)
+       alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+       self.present(alert, animated: true)
+   }
     //MARK: Functions
     func logIn(){
         // Firebase Login
@@ -44,14 +50,15 @@ class LoginViewController: UIViewController {
                 return
             }
             guard let result = authResult, error == nil else {
+                strongSelf.popAlert("\(error?.localizedDescription ?? " " )")
                 print("Failed to log in user with email \(strongSelf.emailTextField.text!)")
                 return
             }
             let user = result.user
             print("logged in user: \(user)")
-            //smt here is wrong???  x
-            strongSelf.navigationController?.popViewController(animated: true)
-            //dismiss(animated: true, completion: nil)
+            let defaults = UserDefaults.standard
+            defaults.set(strongSelf.emailTextField.text, forKey: "isLoggedIn")
+            strongSelf.dismiss(animated: true, completion: nil)
             
         })
 
