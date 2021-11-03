@@ -9,8 +9,8 @@ import UIKit
 import FirebaseAuth
 import FacebookLogin
 import FacebookCore
-import FacebookShare
-import FamilyControls
+//import FacebookShare
+//import FamilyControls
 import FBSDKLoginKit
 
 //TODO: if email is not there, show warning.
