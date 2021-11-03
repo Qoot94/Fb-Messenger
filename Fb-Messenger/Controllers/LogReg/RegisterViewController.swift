@@ -23,9 +23,12 @@ class RegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //profile img customization: make it round
         profileIMG.layer.cornerRadius = profileIMG.bounds.width / 2
         profileIMG.clipsToBounds=true
         profileIMG.layer.borderColor=UIColor.black.cgColor
+        //placehilder customization
+       
         // Do any additional setup after loading the view.
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.profilePicPicked(tapGestureRecognizer:)))
         //imageView.isUserInteractionEnabled = true

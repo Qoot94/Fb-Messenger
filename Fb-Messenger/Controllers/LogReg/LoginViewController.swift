@@ -8,6 +8,11 @@
 import UIKit
 import FirebaseAuth
 import FacebookLogin
+import FacebookCore
+import FacebookShare
+import FamilyControls
+import FBSDKLoginKit
+
 //TODO: if email is not there, show warning.
 //if nothing is entered, show warning.-> print error
 
@@ -15,22 +20,19 @@ class LoginViewController: UIViewController {
     //MARK: IBOutlet 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var facebookLoginBt: UIButton!
     @IBOutlet weak var GoogleLoginBt: UIButton!
+    @IBOutlet weak var facebookLoginBt: FBLoginButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
         // Do any additional setup after loading the view.
-  
         if let token = AccessToken.current,
                 !token.isExpired {
                 // User is logged in, do work such as go to next view controller.
+            facebookLoginBt.isEnabled = false
         }else{
-            let loginButton = FBLoginButton()
-                    loginButton.center = view.center
-                    view.addSubview(loginButton)
-            loginButton.permissions = ["public_profile", "email"]
+            facebookLoginBt.isEnabled = true
+            facebookLoginBt.permissions = ["public_profile", "email"]
         }
         
     }

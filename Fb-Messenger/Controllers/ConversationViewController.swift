@@ -6,7 +6,7 @@ class ConversationsViewController: UIViewController {
     // they are, stay on the screen. If not, show the login screen
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+      
         
         do {
             try FirebaseAuth.Auth.auth().signOut()
@@ -16,9 +16,8 @@ class ConversationsViewController: UIViewController {
        
     }
     override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        super.viewDidAppear(false)
   
-        //validateAuth()
     }
     override func viewWillAppear(_ animated: Bool) {
         validateAuth()
@@ -32,6 +31,7 @@ class ConversationsViewController: UIViewController {
 //            nav.modalPresentationStyle = .fullScreen
 //            present(nav, animated: false)
             let loginvc=storyboard?.instantiateViewController(withIdentifier: "loginVC") as! LoginViewController
+            
             present(loginvc, animated: true, completion: nil)
             loginvc.modalPresentationStyle = .fullScreen
         }
