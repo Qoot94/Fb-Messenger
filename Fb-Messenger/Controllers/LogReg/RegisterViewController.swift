@@ -8,6 +8,7 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import JGProgressHUD
 
 //TODO: if email is not there, show warning.
 //if nothing is entered, show warning.-> print error
@@ -19,8 +20,9 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var LastNameTextField: UITextField!
     @IBOutlet weak var newEmailtextField: UITextField!
     @IBOutlet weak var newPasswordtextField: UITextField!
-    
     @IBOutlet weak var profileIMG: UIImageView!
+    
+    private let spinner = JGProgressHUD(style: .dark)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,16 +46,31 @@ class RegisterViewController: UIViewController {
        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
        self.present(alert, animated: true)
    }
+    
     //MARK: Functions
     //register a new user
     func createUser(){
-        Auth.auth().createUser(withEmail: newEmailtextField.text!, password: newPasswordtextField.text!, completion: { [self] authResult , error  in
+        DatabaseManger.shared.userExists(with: newEmailtextField.text!, completion: {[weak self] exists in
+            guard let strongSelf = self else{ return}
+            DispatchQueue.main.async {
+                strongSelf.spinner.dismiss(animated: false)
+            }
+            guard !exists else{
+                strongSelf.popAlert("the email you entered is taken, please log n or try another email")
+                return
+            }
+            
+        })
+               
+        Auth.auth().createUser(withEmail: newEmailtextField.text!, password: newPasswordtextField.text!, completion: {
+            [self] authResult , error  in
+            
         guard let result = authResult, error == nil else {
             popAlert("\(error?.localizedDescription ?? " " )")
-            
             print("Error creating user\(self.newEmailtextField.text!) ,error:\(String(describing: error?.localizedDescription))")
             return
         }
+            
             //register other user data to firebase
             let userdata = ChatAppUser(firstName: self.firstNametextField.text!, lastName: self.LastNameTextField.text!, emailAddress: self.newEmailtextField.text!)
             DatabaseManger.shared.insertUser(with: userdata)
@@ -62,12 +79,10 @@ class RegisterViewController: UIViewController {
           
         let user = result.user
         print("Created User: \(user)")
-            
+            self.dismiss(animated: true, completion: nil)
             //self.navigationController?.popViewController(animated: true)
-            self.navigationController?.popToRootViewController(animated: true)
-//            if DatabaseManger.shared.userExists(with: newEmailtextField.text!, completion: (Bool) -> Void){
-//
-//            }
+            //self.navigationController?.popToRootViewController(animated: true)
+
       })
     }
     //MARK: IBActions and user interactions
@@ -77,7 +92,7 @@ class RegisterViewController: UIViewController {
         self.presentPhotoActionSheet()
     }
     @IBAction func signUpUser(_ sender: UIButton) {
-        
+        spinner.show(in:view)
         createUser()
     }
     

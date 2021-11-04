@@ -12,7 +12,7 @@ import FacebookCore
 //import FacebookShare
 //import FamilyControls
 import FBSDKLoginKit
-
+import JGProgressHUD
 //TODO: if email is not there, show warning.
 //if nothing is entered, show warning.-> print error
 
@@ -23,6 +23,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var GoogleLoginBt: UIButton!
     @IBOutlet weak var facebookLoginBt: FBLoginButton!
     
+    
+    private let spinner = JGProgressHUD(style: .dark)
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -45,15 +47,26 @@ class LoginViewController: UIViewController {
     //MARK: Functions
     func logIn(){
         // Firebase Login
-        FirebaseAuth.Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: { [weak self] authResult, error in
+        
+        FirebaseAuth.Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: {
+            [weak self] authResult, error in
+            
             guard let strongSelf = self else{
                 return
             }
+            //when succeed, remove spinner in main thread
+            DispatchQueue.main.async {
+                strongSelf.spinner.dismiss(animated: false)
+            }
+            //saftely unwrap error and results from server call
             guard let result = authResult, error == nil else {
+                //handle when there is error
+                //pop error alert to user
                 strongSelf.popAlert("\(error?.localizedDescription ?? " " )")
                 print("Failed to log in user with email \(strongSelf.emailTextField.text!)")
                 return
             }
+            //handle when result call is successeful/no error
             let user = result.user
             print("logged in user: \(user)")
             let defaults = UserDefaults.standard
@@ -65,6 +78,7 @@ class LoginViewController: UIViewController {
     }
     //MARK: IBActions and user interactions
     @IBAction func LogInUser(_ sender: UIButton) {
+        spinner.show(in: view)
         logIn()
     }
     /*

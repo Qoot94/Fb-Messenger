@@ -8,6 +8,11 @@ final class DatabaseManger {
     // reference the database below
     private let database = Database.database().reference()
     
+    static func safeEmail(_ emailAddress: String)-> String {
+        var safeEmail = emailAddress.replacingOccurrences(of: ".", with: "-")
+        safeEmail = safeEmail.replacingOccurrences(of: "@", with: "-")
+        return safeEmail
+    }
     // create a simple write function
     public func test() {
         // NoSQL - JSON (keys and objects)
@@ -17,7 +22,7 @@ final class DatabaseManger {
         
         database.child("foo").setValue(["something":true])
     }
-
+    
 }
 // MARK: - account management
 extension DatabaseManger {
@@ -133,6 +138,15 @@ extension DatabaseManger {
     public enum DatabaseError: Error {
         case failedToFetch
     }
+}
+
+extension DatabaseManger{
+    
+    public func getAllMessagesForConversation(with id:String, completion: @escaping (Bool) -> Void){
+        
+    }
+    //public func 
+    
 }
 // above
 // when user tries to start a convo, we can pull all these users with one request

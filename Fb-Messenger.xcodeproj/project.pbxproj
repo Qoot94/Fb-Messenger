@@ -70,7 +70,6 @@
 		B623DA4127294E7800E4F5D5 = {
 			isa = PBXGroup;
 			children = (
-				B6C9F27027329E0800583A7B /* ChatViewController.swift */,
 				B623DA4C27294E7800E4F5D5 /* Fb-Messenger */,
 				B623DA4B27294E7800E4F5D5 /* Products */,
 				173C8A410278558D39C29C6B /* Pods */,
@@ -140,6 +139,7 @@
 			children = (
 				B623DA6927296D9C00E4F5D5 /* ConversationViewController.swift */,
 				B623DA6D27296DC100E4F5D5 /* NewConversationViewController.swift */,
+				B6C9F27027329E0800583A7B /* ChatViewController.swift */,
 				B623DA6F27296DD500E4F5D5 /* ProfileViewController.swift */,
 				B623DA6827296C4C00E4F5D5 /* LogReg */,
 			);
