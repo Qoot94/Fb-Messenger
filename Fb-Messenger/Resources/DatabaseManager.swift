@@ -50,10 +50,15 @@ extension DatabaseManger {
     }
     
     /// Insert new user to database
-    public func insertUser(with user: ChatAppUser){
+    public func insertUser(with user: ChatAppUser, completion: @escaping(Bool)->Void){
         
-        database.child(user.safeEmail).setValue(["first_name":user.firstName,"last_name":user.lastName]
-        )
+        database.child(user.safeEmail).setValue(["first_name":user.firstName,"last_name":user.lastName], withCompletionBlock: {error , _ in
+            guard error == nil else{
+                print("failed to add to database ")
+                return
+            }
+            completion(true)
+        } )
     }
 }
 struct ChatAppUser {
@@ -63,66 +68,68 @@ struct ChatAppUser {
     //let profilePictureUrl: String
     
     // create a computed property safe email
-    
     var safeEmail: String {
         var safeEmail = emailAddress.replacingOccurrences(of: ".", with: "-")
         safeEmail = safeEmail.replacingOccurrences(of: "@", with: "-")
         return safeEmail
     }
+    var ProfilePicFile: String{
+        return "\(safeEmail)_profile_pic.png"
+    }
 }
 
 extension DatabaseManger {
     
-    /// Insert new user to database
-    public func insertUser(with user: ChatAppUser, completion: @escaping (Bool) -> Void){
-        // adding completion block here so once it's done writing to database, we want to upload the image
-        
-        // once user object is creatd, also append it to the user's collection
-        database.child(user.safeEmail).setValue(["first_name":user.firstName,"last_name":user.lastName]) { error, _ in
-            guard error  == nil else {
-                print("failed to write to database")
-                completion(false)
-                return
-            }
-            
-            self.database.child("users").observeSingleEvent(of: .value) { snapshot in
-                // snapshot is not the value itself
-                if var usersCollection = snapshot.value as? [[String: String]] {
-                    // if var so we can make it mutable so we can append more contents into the array, and update it
-                    // append to user dictionary
-                    let newElement = [
-                        "name": user.firstName + " " + user.lastName,
-                        "email": user.safeEmail
-                    ]
-                    usersCollection.append(newElement)
-                    
-                    self.database.child("users").setValue(usersCollection) { error, _ in
-                        guard error == nil else {
-                            completion(false)
-                            return
-                        }
-                        completion(true)
-                    }
-                    
-                }else{
-                    // create that array
-                    let newCollection: [[String: String]] = [
-                        [
-                            "name": user.firstName + " " + user.lastName,
-                            "email": user.safeEmail
-                        ]
-                    ]
-                    self.database.child("users").setValue(newCollection) { error, _ in
-                        guard error == nil else {
-                            completion(false)
-                            return
-                        }
-                        completion(true)
-                    }
-                }
-            }
-        }
-    }
+    // MARK: Insert new user to database
+   // public func insertUser(with user: ChatAppUser, completion: @escaping (Bool) -> Void){
+//        // adding completion block here so once it's done writing to database, we want to upload the image
+//
+//        // once user object is creatd, also append it to the user's collection
+//        database.child(user.safeEmail).setValue(["first_name":user.firstName,"last_name":user.lastName]) { error, _ in
+//            guard error  == nil else {
+//                print("failed to write to database")
+//                completion(false)
+//                return
+//            }
+//
+//            self.database.child("users").observeSingleEvent(of: .value) { snapshot in
+//                // snapshot is not the value itself
+//                if var usersCollection = snapshot.value as? [[String: String]] {
+//                    // if var so we can make it mutable so we can append more contents into the array, and update it
+//                    // append to user dictionary
+//                    let newElement = [
+//                        "name": user.firstName + " " + user.lastName,
+//                        "email": user.safeEmail
+//                    ]
+//                    usersCollection.append(newElement)
+//
+//                    self.database.child("users").setValue(usersCollection) { error, _ in
+//                        guard error == nil else {
+//                            completion(false)
+//                            return
+//                        }
+//                        completion(true)
+//                    }
+//
+//                }else{
+//                    // create that array
+//                    let newCollection: [[String: String]] = [
+//                        [
+//                            "name": user.firstName + " " + user.lastName,
+//                            "email": user.safeEmail
+//                        ]
+//                    ]
+//                    self.database.child("users").setValue(newCollection) { error, _ in
+//                        guard error == nil else {
+//                            completion(false)
+//                            return
+//                        }
+//                        completion(true)
+//                    }
+//                }
+//            }
+//        }
+//    }
     
     public func getAllUsers(completion: @escaping (Result<[[String: String]], Error>) -> Void){
         database.child("users").observeSingleEvent(of: .value) { snapshot in

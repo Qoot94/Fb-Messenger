@@ -19,8 +19,12 @@ target 'Fb-Messenger' do
 #pod 'FacebookLogin'
 #pod 'FacebookShare'
 #
+##Pods for messeges send and store feature, loading screen and handling img
 #pod 'MessageKit'
 #pod 'JGProgressHUD'
 #pod 'RealmSwift'
 #pod 'SDWebImage'
+#
+##Pod for handling keybord
+#pod 'IQKeyboardManager'
 end

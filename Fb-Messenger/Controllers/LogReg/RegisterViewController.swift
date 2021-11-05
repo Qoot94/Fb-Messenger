@@ -30,26 +30,27 @@ class RegisterViewController: UIViewController {
         profileIMG.layer.cornerRadius = profileIMG.bounds.width / 2
         profileIMG.clipsToBounds=true
         profileIMG.layer.borderColor=UIColor.black.cgColor
-        //placehilder customization     
+        //placehilder customization
         // Do any additional setup after loading the view.
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.profilePicPicked(tapGestureRecognizer:)))
         //imageView.isUserInteractionEnabled = true
         profileIMG.addGestureRecognizer(tapGestureRecognizer)
         
-//        DatabaseManger.shared.test("qoot", firstNametextField.text!)
+        //        DatabaseManger.shared.test("qoot", firstNametextField.text!)
     }
     override func viewDidAppear(_ animated: Bool) {
         
     }
     func popAlert(_ message: String) {
-       var alert = UIAlertController(title: "warning", message: message, preferredStyle: .alert)
-       alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-       self.present(alert, animated: true)
-   }
+        var alert = UIAlertController(title: "warning", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true)
+    }
     
     //MARK: Functions
     //register a new user
     func createUser(){
+        //make sure users are unique by checking if user email exists in db
         DatabaseManger.shared.userExists(with: newEmailtextField.text!, completion: {[weak self] exists in
             guard let strongSelf = self else{ return}
             DispatchQueue.main.async {
@@ -60,30 +61,45 @@ class RegisterViewController: UIViewController {
                 return
             }
             
+            //if user does not exist, creat one
+            Auth.auth().createUser(withEmail:strongSelf.newEmailtextField.text!, password: strongSelf.newPasswordtextField.text!, completion: {
+                 authResult , error  in
+                
+                guard let result = authResult, error == nil else {
+                    strongSelf.popAlert("\(error?.localizedDescription ?? " " )")
+                    print("Error creating user\(strongSelf.newEmailtextField.text!) ,error:\(String(describing: error?.localizedDescription))")
+                    return
+                }
+                
+                //register other user data to firebase
+                let userdata = ChatAppUser(firstName: strongSelf.firstNametextField.text!, lastName: strongSelf.LastNameTextField.text!, emailAddress: strongSelf.newEmailtextField.text!)
+                DatabaseManger.shared.insertUser(with: userdata, completion: { success in
+                    if success {
+                        //upload img
+                        guard let img = strongSelf.profileIMG.image, let data = img.pngData() else{return}
+                        let imgfile = userdata.ProfilePicFile
+                        StoragManager.shared.uploadProfilePic(with: data, file: imgfile, completion: {result in
+                            switch result{
+                            case .success(let downloadedURL):
+                                UserDefaults.standard.set(downloadedURL, forKey: "profile_pic_url")
+                                print(downloadedURL)
+                            case .failure(let error):
+                                print("Error storing img \(error)")
+                            }
+                        })
+                    }
+                })
+                
+                
+                let user = result.user
+                print("Created User: \(user)")
+                strongSelf.dismiss(animated: true, completion: nil)
+                //strongSelf.navigationController?.dismiss(animated: true)//possible**
+                //self.navigationController?.popViewController(animated: true)
+                //self.navigationController?.popToRootViewController(animated: true)
+                
+            })
         })
-               
-        Auth.auth().createUser(withEmail: newEmailtextField.text!, password: newPasswordtextField.text!, completion: {
-            [self] authResult , error  in
-            
-        guard let result = authResult, error == nil else {
-            popAlert("\(error?.localizedDescription ?? " " )")
-            print("Error creating user\(self.newEmailtextField.text!) ,error:\(String(describing: error?.localizedDescription))")
-            return
-        }
-            
-            //register other user data to firebase
-            let userdata = ChatAppUser(firstName: self.firstNametextField.text!, lastName: self.LastNameTextField.text!, emailAddress: self.newEmailtextField.text!)
-            DatabaseManger.shared.insertUser(with: userdata)
-            
-//            DatabaseManger.insertUser(userdata)
-          
-        let user = result.user
-        print("Created User: \(user)")
-            self.dismiss(animated: true, completion: nil)
-            //self.navigationController?.popViewController(animated: true)
-            //self.navigationController?.popToRootViewController(animated: true)
-
-      })
     }
     //MARK: IBActions and user interactions
     //open photo picker when tab gesture happens in uiimageview

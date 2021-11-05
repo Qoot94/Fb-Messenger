@@ -408,18 +408,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="O8U-mZ-9IK">
-                                <rect key="frame" x="30" y="44" width="354" height="774"/>
+                                <rect key="frame" x="30" y="44" width="354" height="516"/>
                                 <subviews>
-                                    <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Nu-PA-jO6">
-                                        <rect key="frame" x="0.0" y="0.0" width="354" height="258"/>
-                                        <items>
-                                            <navigationItem title="Sign up" id="HNS-lo-lDs">
-                                                <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Z1j-OJ-VaH"/>
-                                            </navigationItem>
-                                        </items>
-                                    </navigationBar>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" semanticContentAttribute="playback" translatesAutoresizingMaskIntoConstraints="NO" id="Ek1-1U-JrH">
-                                        <rect key="frame" x="54" y="258" width="246" height="258"/>
+                                        <rect key="frame" x="54" y="0.0" width="246" height="258"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="facebook-messenger" id="69r-zb-mQ1">
                                                 <rect key="frame" x="43" y="55" width="161" height="155"/>
@@ -431,7 +423,7 @@
                                         <rect key="contentStretch" x="0.050000000000000003" y="0.050000000000000003" width="1" height="1"/>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="F86-FG-R0X">
-                                        <rect key="frame" x="0.0" y="516" width="354" height="258"/>
+                                        <rect key="frame" x="0.0" y="258" width="354" height="258"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="First Name.." minimumFontSize="19" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="j00-kd-2Qs">
                                                 <rect key="frame" x="0.0" y="0.0" width="354" height="50"/>
