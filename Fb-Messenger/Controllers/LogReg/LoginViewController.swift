@@ -24,7 +24,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var facebookLoginBt: FBLoginButton!
     
     
-    private let spinner = JGProgressHUD(style: .dark)
+    private let spinner = JGProgressHUD(style: .light)
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -39,36 +39,36 @@ class LoginViewController: UIViewController {
         }
         
     }
-    func popAlert(_ message: String) {
-       var alert = UIAlertController(title: "warning", message: message, preferredStyle: .alert)
-       alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-       self.present(alert, animated: true)
-   }
+  
+    
     //MARK: Functions
     func logIn(){
-        // Firebase Login
-        
+        // Firebase authorized Login
         FirebaseAuth.Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: {
             [weak self] authResult, error in
             
             guard let strongSelf = self else{
                 return
             }
+            let userEmail = strongSelf.emailTextField.text!
             //when succeed, remove spinner in main thread
             DispatchQueue.main.async {
                 strongSelf.spinner.dismiss(animated: false)
             }
             //saftely unwrap error and results from server call
             guard let result = authResult, error == nil else {
-                //handle when there is error
-                //pop error alert to user
+                //handle when there is error: pop error alert to user
                 strongSelf.popAlert("\(error?.localizedDescription ?? " " )")
-                print("Failed to log in user with email \(strongSelf.emailTextField.text!)")
+                print("Failed to log in user with email: \(userEmail)")
                 return
             }
+            
             //handle when result call is successeful/no error
             let user = result.user
+
             print("logged in user: \(user)")
+            UserDefaults.standard.set(userEmail, forKey: "email")
+            //save user logged in
             let defaults = UserDefaults.standard
             defaults.set(strongSelf.emailTextField.text, forKey: "isLoggedIn")
             strongSelf.dismiss(animated: true, completion: nil)
@@ -76,6 +76,13 @@ class LoginViewController: UIViewController {
         })
 
     }
+    
+    func popAlert(_ message: String) {
+       let alert = UIAlertController(title: "warning", message: message, preferredStyle: .alert)
+       alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+       self.present(alert, animated: true)
+   }
+    
     //MARK: IBActions and user interactions
     @IBAction func LogInUser(_ sender: UIButton) {
         spinner.show(in: view)

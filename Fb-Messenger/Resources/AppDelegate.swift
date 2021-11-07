@@ -13,12 +13,17 @@ import IQKeyboardManager
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
-        
         IQKeyboardManager.shared().isEnabled = true
+//        if UserDefaults.standard.value(forKey: "isLoggedIn") != nil{
+//            let allChatvc = storyboard?.instantiateViewController(withIdentifier: "allChatVC") as! ConversationsViewController
+//            self.present(allChatvc, animated: true, completion: nil)
+//        }else{
+//            let loginvc=storyboard?.instantiateViewController(withIdentifier: "loginVC") as! LoginViewController
+//            present(loginvc, animated: true, completion: nil)
+//        }
         return true
     }
 

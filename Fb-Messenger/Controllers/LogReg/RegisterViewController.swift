@@ -42,7 +42,7 @@ class RegisterViewController: UIViewController {
         
     }
     func popAlert(_ message: String) {
-        var alert = UIAlertController(title: "warning", message: message, preferredStyle: .alert)
+        let alert = UIAlertController(title: "warning", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         self.present(alert, animated: true)
     }
@@ -90,13 +90,12 @@ class RegisterViewController: UIViewController {
                     }
                 })
                 
-                
                 let user = result.user
                 print("Created User: \(user)")
                 strongSelf.dismiss(animated: true, completion: nil)
-                //strongSelf.navigationController?.dismiss(animated: true)//possible**
-                //self.navigationController?.popViewController(animated: true)
-                //self.navigationController?.popToRootViewController(animated: true)
+                let allChatvc = strongSelf.storyboard?.instantiateViewController(withIdentifier: "allChatVC") as! ConversationsViewController
+                allChatvc.modalPresentationStyle = .fullScreen
+                strongSelf.present(allChatvc, animated: true, completion: nil)
                 
             })
         })

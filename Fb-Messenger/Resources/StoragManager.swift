@@ -14,7 +14,7 @@ final class StoragManager{
     
     private let storage = Storage.storage().reference()
     
-   
+    
     public func uploadProfilePic(with data: Data, file: String,  completion: @escaping(Result<String, Error>)->Void){
         storage.child("images/\(file)").putData(data, metadata: nil, completion: { metadata, error in
             guard error == nil else{
@@ -40,5 +40,14 @@ final class StoragManager{
         case failedToUpload
         case failedToGetUrl
     }
-    
+    public func downloadImgURL(for path: String, completion: @escaping (Result<URL, Error>)-> Void){
+        let ref = storage.child(path)
+        ref.downloadURL(completion: {url, error in
+            guard let url = url, error == nil else {
+                completion(.failure(PossibleErrors.failedToGetUrl))
+                return
+            }
+            completion(.success(url))
+        })
+    }
 }

@@ -52,32 +52,35 @@ class ConversationsViewController: UIViewController {
         // current user is set automatically when you log a user in
         if FirebaseAuth.Auth.auth().currentUser == nil {
             // present login view controller
-//            let vc = LoginViewController()
-//            let nav = UINavigationController(rootViewController: vc)
-//            nav.modalPresentationStyle = .fullScreen
-//            present(nav, animated: false)
             let loginvc=storyboard?.instantiateViewController(withIdentifier: "loginVC") as! LoginViewController
-
-            present(loginvc, animated: true, completion: nil)
             loginvc.modalPresentationStyle = .fullScreen
+            present(loginvc, animated: true, completion: nil)
+            
         }
     }
 }
 extension ConversationsViewController{
- 
-        
         @objc private func didTapComposeButton(){
             // present new conversation view controller
             // present in a nav controller
-            
+
             let vc = NewConversationViewController()
+            vc.comletionHandler = { [weak self] result in
+                self?.creatNewConversation(result: result)
+            }
             let navVC = UINavigationController(rootViewController: vc)
             present(navVC,animated: true)
         }
+    public func creatNewConversation(result: [String:String]){
         
+         let vc = ChatViewController()
+         vc.title = "Jenny Smith"
+         vc.navigationItem.largeTitleDisplayMode = .never
+       navigationController?.pushViewController(vc, animated: true)
+    }
         override func viewDidLayoutSubviews() {
             super.viewDidLayoutSubviews()
-            table.layer.frame = view.bounds
+            table.frame = view.bounds
         }
     
         
